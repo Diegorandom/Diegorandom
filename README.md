@@ -21,10 +21,12 @@ my own harness since 2026.
 - **Verification.** Agents check their own output instead of trusting a clean exit — including
   rendering an artefact and inspecting the result.
 
-The public part of it is [`licensegate-operator`](https://github.com/Diegorandom/license-gate-cli/blob/main/.agents/skills/licensegate-operator/SKILL.md),
+Two public receipts: [`licensegate-operator`](https://github.com/Diegorandom/license-gate-cli/blob/main/.agents/skills/licensegate-operator/SKILL.md),
 an [Agent Skills](https://agentskills.io/specification) definition for a CLI that mutates real
-licences: dry-run first, explicit confirmation before live writes, secrets never on the command
-line. **The tool acts; the human authorises.**
+licences — dry-run first, explicit confirmation before live writes, secrets never on the command
+line — and the store's own [`agents.md`](https://casaoccidente.com/agents.md), which gives agents a
+UCP/MCP path to browse and build a cart, and gates checkout on explicit buyer consent.
+**The tool acts; the human authorises.**
 
 ## Numbers I can defend
 
@@ -50,15 +52,22 @@ Ten years of backend and platform before this, in Java, Kotlin and TypeScript:
 
 ## What I care about in this work
 
-- **Measure on the thread that has the deadline.** A missed buffer is not a wrong value, it is a
-  click, so the audio thread gets budgets and traces, not assertions.
-- **A parameter range is a contract.** Widening the Rider's action range from ±12 dB to ±24 dB
-  reinterprets existing automation lanes in every host, so it does not ship quietly: the release
-  notes say it in plain language, before anyone opens an old project and hears something different.
-- **Green is not correct.** Three tests went green on a function that was wrong in six of nine
-  real cases. A test that cannot fail against the old code is decoration, not evidence.
-- **You don't trust the model, you bound it.** Anything that can act on production proposes first
-  and is validated before it executes — the same discipline as handing a junior engineer credentials.
+Generating options is cheap now. Everything below is about the part that isn't.
+
+- **A missed buffer is a click, not a wrong value.** The audio thread gets budgets and traces
+  instead of assertions, and the target is fifteen instances in a real session, not a benchmark
+  number on an idle machine.
+- **The real-time path and the control plane don't mix.** Audio-path state changes lock-free;
+  anything that touches the host or the UI goes through a thread hop, and never into sample-accurate
+  DSP. Getting that boundary wrong is how plugins crackle under load.
+- **The tool should be able to leave the session.** The Rider bakes its automation into the DAW,
+  so you can delete the plugin and keep the mix. I hold the agent work to the same rule: the output
+  has to survive without the thing that made it.
+- **When two answers are both right, hand the user the choice.** RMS energy and LUFS short-term
+  loudness measure the same take differently, so the plugin exposes both instead of picking one
+  and calling it "the truth".
+- **An agent that can spend money must stop and ask.** My store publishes its own agent
+  instructions, and the payment step is gated on explicit buyer consent.
 
 ## Where to look
 
