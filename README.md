@@ -50,15 +50,15 @@ Ten years of backend and platform before this, in Java, Kotlin and TypeScript:
 
 ## What I care about in this work
 
-- **Real-time budgets instead of feature lists.** A missed deadline is not a wrong value, so the
-  audio thread gets budgets and measurement, not assertions.
-- **A parameter range is a contract.** When I widened the action range from ±12 dB to ±24 dB,
-  existing automation lanes were reinterpreted by the host — so the release notes say so, in
-  plain language, before anyone opens an old project and hears something different.
-- **Boundaries are where the bugs live.** The end of a region is exclusive; the first and last
-  gap are the ones implementations forget.
-- **You don't trust the model, you bound it.** Anything that can act on production has to propose
-  before it executes — the same discipline as handing a junior engineer credentials.
+- **Measure on the thread that has the deadline.** A missed buffer is not a wrong value, it is a
+  click, so the audio thread gets budgets and traces, not assertions.
+- **A parameter range is a contract.** Widening the Rider's action range from ±12 dB to ±24 dB
+  reinterprets existing automation lanes in every host, so it does not ship quietly: the release
+  notes say it in plain language, before anyone opens an old project and hears something different.
+- **Green is not correct.** Three tests went green on a function that was wrong in six of nine
+  real cases. A test that cannot fail against the old code is decoration, not evidence.
+- **You don't trust the model, you bound it.** Anything that can act on production proposes first
+  and is validated before it executes — the same discipline as handing a junior engineer credentials.
 
 ## Where to look
 
