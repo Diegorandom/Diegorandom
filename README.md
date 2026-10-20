@@ -63,6 +63,10 @@ Generating options is cheap now. Everything below is about the part that isn't.
 - **The tool should be able to leave the session.** The Rider bakes its automation into the DAW,
   so you can delete the plugin and keep the mix. I hold the agent work to the same rule: the output
   has to survive without the thing that made it.
+- **A parameter range is a contract.** Doubling the Rider's action range from ±12 dB to ±24 dB
+  doubled the meaning of every existing automation lane in every host — a curve that reached +6 dB
+  now reaches +12 — so the release notes say that in plain language, before anyone opens an old
+  project and hears something different.
 - **When two answers are both right, hand the user the choice.** RMS energy and LUFS short-term
   loudness measure the same take differently, so the plugin exposes both instead of picking one
   and calling it "the truth".
