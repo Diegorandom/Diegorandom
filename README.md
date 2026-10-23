@@ -21,12 +21,15 @@ my own harness since 2026.
 - **Verification.** Agents check their own output instead of trusting a clean exit — including
   rendering an artefact and inspecting the result.
 
-Two public receipts: [`licensegate-operator`](https://github.com/Diegorandom/license-gate-cli/blob/main/.agents/skills/licensegate-operator/SKILL.md),
+Three public receipts. [`licensegate-operator`](https://github.com/Diegorandom/license-gate-cli/blob/main/.agents/skills/licensegate-operator/SKILL.md),
 an [Agent Skills](https://agentskills.io/specification) definition for a CLI that mutates real
 licences — dry-run first, explicit confirmation before live writes, secrets never on the command
 line — and the store's own [`agents.md`](https://casaoccidente.com/agents.md), which gives agents a
 UCP/MCP path to browse and build a cart, and gates checkout on explicit buyer consent.
 **The tool acts; the human authorises.**
+[`juce-verify`](https://github.com/Diegorandom/juce-verify) closes the other side: a harness that
+measures what a plugin *claims you can hear* — bit-exactness, zipper, block-size independence,
+deadline usage, latency — so a claim about audio becomes a number instead of an adjective.
 
 ## Numbers I can defend
 
@@ -54,6 +57,12 @@ Ten years of backend and platform before this, in Java, Kotlin and TypeScript:
 
 Generating options is cheap now. Everything below is about the part that isn't.
 
+- **A claim about what you hear gets a number.** «This sounds better» is not a measurement, and an
+  agent that says «it works» has told you nothing. The harness I use for a course on plugins
+  reports a **14.7 dB** click from an unsmoothed gain, **240 samples** of latency, and **79.6 %** of
+  a block's deadline consumed by an allocation — and the first version of that last number was
+  noise below the scheduler, which is written down too. A verification loop that never contradicts
+  itself is not a verification loop; it is a rubber stamp.
 - **A missed buffer is a click, not a wrong value.** The audio thread gets budgets and traces
   instead of assertions, and the target is fifteen instances in a real session, not a benchmark
   number on an idle machine.
@@ -79,6 +88,7 @@ Generating options is cheap now. Everything below is about the part that isn't.
 |---|---|
 | **Hear the product** | [casaoccidente.com](https://casaoccidente.com) — three plugins, macOS, AU + VST3, free trial |
 | **Engineering judgment in code** | [`license-gate-cli`](https://github.com/Diegorandom/license-gate-cli) — a TypeScript CLI that mutates real licences. The tool acts; the human authorises. |
+| **How the agent proves its work** | [`juce-verify`](https://github.com/Diegorandom/juce-verify) — five measurements, each with its number, and the three corrections the process made to itself |
 | **How I use agents** | [`licensegate-operator`](https://github.com/Diegorandom/license-gate-cli/blob/main/.agents/skills/licensegate-operator/SKILL.md) — the agent skill: dry-run first, explicit confirmation, no secrets on the command line |
 | **DSP and plugin work, learning in public** | [`SimpleMBComp`](https://github.com/Diegorandom/SimpleMBComp) (multiband compressor + spectrum analyser) · [`SimpleEQ`](https://github.com/Diegorandom/SimpleEQ) |
 | **Earlier: algorithmic composition** | [`WolframAmadeus`](https://github.com/Diegorandom/WolframAmadeus) — SuperCollider driven by Wolfram Language |
