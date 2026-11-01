@@ -96,4 +96,4 @@ Generating options is cheap now. Everything below is about the part that isn't.
 
 ## Elsewhere
 
-[LinkedIn](https://www.linkedin.com/in/diegortega/) · diego@casaoccidente.com
+[LinkedIn](https://www.linkedin.com/in/diegortega/) · diegortegaimi@gmail.com
