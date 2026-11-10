@@ -21,11 +21,12 @@ my own harness since 2026.
 - **Verification.** Agents check their own output instead of trusting a clean exit — including
   rendering an artefact and inspecting the result.
 
-Three public receipts. [`licensegate-operator`](https://github.com/Diegorandom/license-gate-cli/blob/main/.agents/skills/licensegate-operator/SKILL.md),
-an [Agent Skills](https://agentskills.io/specification) definition for a CLI that mutates real
-licences — dry-run first, explicit confirmation before live writes, secrets never on the command
-line — and the store's own [`agents.md`](https://casaoccidente.com/agents.md), which gives agents a
-UCP/MCP path to browse and build a cart, and gates checkout on explicit buyer consent.
+Three public receipts. [`licensegate-bulk-cli`](https://github.com/Diegorandom/licensegate-bulk-cli),
+a TypeScript CLI that mutates real licences: **82 tests**, CI on Node 20 and 22
+([the run](https://github.com/Diegorandom/licensegate-bulk-cli/actions/runs/42885673276)), dry-run
+first, a hard cap on how many licences one run may touch, and the API key never on the command
+line. The store's own [`agents.md`](https://casaoccidente.com/agents.md) gives agents a UCP/MCP
+path to browse and build a cart, and gates checkout on explicit buyer consent.
 **The tool acts; the human authorises.**
 [`juce-verify`](https://github.com/Diegorandom/juce-verify) closes the other side: a harness that
 measures what a plugin *claims you can hear* — bit-exactness, zipper, block-size independence,
@@ -87,9 +88,8 @@ Generating options is cheap now. Everything below is about the part that isn't.
 | | |
 |---|---|
 | **Hear the product** | [casaoccidente.com](https://casaoccidente.com) — three plugins, macOS, AU + VST3, free trial |
-| **Engineering judgment in code** | [`license-gate-cli`](https://github.com/Diegorandom/license-gate-cli) — a TypeScript CLI that mutates real licences. The tool acts; the human authorises. |
+| **Engineering judgment in code** | [`licensegate-bulk-cli`](https://github.com/Diegorandom/licensegate-bulk-cli) — a TypeScript CLI that mutates real licences, with 82 tests and the CI run to prove them. The tool acts; the human authorises. |
 | **How the agent proves its work** | [`juce-verify`](https://github.com/Diegorandom/juce-verify) — five measurements, each with its number, and the three corrections the process made to itself |
-| **How I use agents** | [`licensegate-operator`](https://github.com/Diegorandom/license-gate-cli/blob/main/.agents/skills/licensegate-operator/SKILL.md) — the agent skill: dry-run first, explicit confirmation, no secrets on the command line |
 | **DSP and plugin work, learning in public** | [`SimpleMBComp`](https://github.com/Diegorandom/SimpleMBComp) (multiband compressor + spectrum analyser) · [`SimpleEQ`](https://github.com/Diegorandom/SimpleEQ) |
 | **Earlier: algorithmic composition** | [`WolframAmadeus`](https://github.com/Diegorandom/WolframAmadeus) — SuperCollider driven by Wolfram Language |
 | **Earlier: data sonification** | [`DeltaPureData`](https://github.com/Diegorandom/DeltaPureData) — a meteorological simulator rendered as sound |
