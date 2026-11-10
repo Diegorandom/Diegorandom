@@ -32,6 +32,24 @@ path to browse and build a cart, and gates checkout on explicit buyer consent.
 measures what a plugin *claims you can hear* — bit-exactness, zipper, block-size independence,
 deadline usage, latency — so a claim about audio becomes a number instead of an adjective.
 
+## Open source
+
+**[`dsp-probe`](https://github.com/Diegorandom/dsp-probe)** — MIT, header-only C++17, zero
+dependencies. Extracted from RaiderPro, where it ran inside the DSP tests before being made
+standalone.
+
+You cannot `printf` from the audio thread. At 48 kHz a 64-sample block lasts **1.333 ms**, and
+nothing you would use to look inside a DSP fits in that window. So the numbers leave through an
+SPSC ring instead.
+
+The ring is not a throughput buffer. It is a **stall buffer**: 8,192 rows is 10.9 s of audio at
+750 rows/s, which is how long the draining thread can be dead before the probe starts losing
+rows. When it does, `push()` drops the incoming row and **counts it**. A probe that loses rows
+silently turns a passing test into a lie, so `dropped()` ships with the policy instead of as an
+afterthought.
+
+18 test cases, 86 assertions, CI green.
+
 ## Numbers I can defend
 
 - **< 1.5 % CPU per instance**, with negligible added latency, measured on the audio thread.
@@ -90,6 +108,7 @@ Generating options is cheap now. Everything below is about the part that isn't.
 | **Hear the product** | [casaoccidente.com](https://casaoccidente.com) — three plugins, macOS, AU + VST3, free trial |
 | **Engineering judgment in code** | [`licensegate-bulk-cli`](https://github.com/Diegorandom/licensegate-bulk-cli) — a TypeScript CLI that mutates real licences, with 82 tests and the CI run to prove them. The tool acts; the human authorises. |
 | **How the agent proves its work** | [`juce-verify`](https://github.com/Diegorandom/juce-verify) — five measurements, each with its number, and the three corrections the process made to itself |
+| **Open source, extracted from the product** | [`dsp-probe`](https://github.com/Diegorandom/dsp-probe) — MIT, header-only C++17: a lock-free probe for the audio thread, with its sizing rule and drop policy written down instead of implied |
 | **DSP and plugin work, learning in public** | [`SimpleMBComp`](https://github.com/Diegorandom/SimpleMBComp) (multiband compressor + spectrum analyser) · [`SimpleEQ`](https://github.com/Diegorandom/SimpleEQ) |
 | **Earlier: algorithmic composition** | [`WolframAmadeus`](https://github.com/Diegorandom/WolframAmadeus) — SuperCollider driven by Wolfram Language |
 | **Earlier: data sonification** | [`DeltaPureData`](https://github.com/Diegorandom/DeltaPureData) — a meteorological simulator rendered as sound |
